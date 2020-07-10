@@ -23,7 +23,7 @@ class Orc extends SimpleEnemy {
           animRunRight: SpriteSheetOrc.getRunBottomRight(),
           animRunTopLeft: SpriteSheetOrc.getRunTopLeft(),
           animRunTopRight: SpriteSheetOrc.getRunTopRight(),
-          speed: 50,
+          speed: tileSize * 3,
           width: tileSize * 2.9,
           height: tileSize * 2.9,
           collision: Collision(

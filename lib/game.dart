@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:minifantasy/light.dart';
@@ -9,7 +11,7 @@ class Game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      tileSize = constraints.maxHeight / 40;
+      tileSize = max(constraints.maxHeight, constraints.maxWidth) / 40;
       return BonfireTiledWidget(
         joystick: Joystick(directional: JoystickDirectional(), actions: [
           JoystickAction(

@@ -6,7 +6,7 @@ import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet_player.dart';
 
 class HumanPlayer extends SimplePlayer with Lighting {
-  static double maxSpeed = 80;
+  static double maxSpeed = tileSize * 4;
 
   bool lockMove = false;
 
