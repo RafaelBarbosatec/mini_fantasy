@@ -1,6 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flame/animation.dart' as FlameAnimation;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet_player.dart';
@@ -41,7 +42,8 @@ class HumanPlayer extends SimplePlayer with Lighting {
   @override
   void joystickAction(JoystickActionEvent event) {
     if (isDead || lockMove) return;
-    if (event.id == 1 && event.event == ActionEvent.DOWN) {
+    if ((event.id == 1 && event.event == ActionEvent.DOWN) ||
+        event.id == LogicalKeyboardKey.space.keyId) {
       _addAttackAnimation();
       this.simpleAttackMelee(
         damage: 10,

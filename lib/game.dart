@@ -12,21 +12,35 @@ class Game extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       tileSize = max(constraints.maxHeight, constraints.maxWidth) / 40;
-      return BonfireTiledWidget(
-        joystick: Joystick(directional: JoystickDirectional(), actions: [
-          JoystickAction(
-            actionId: 1,
-            margin: const EdgeInsets.all(65),
-          )
-        ]),
-        player: HumanPlayer(Position(4 * tileSize, 4 * tileSize)),
-        map: TiledWorldMap('tile/map.json', forceTileSize: tileSize)
-          ..registerObject(
-            'light',
-            (x, y, width, height) => Light(Position(x, y), width, height),
-          )
-          ..registerObject('orc', (x, y, width, height) => Orc(Position(x, y))),
-        lightingColorGame: Colors.black.withOpacity(0.65),
+      return Material(
+        color: Colors.transparent,
+        child: BonfireTiledWidget(
+          joystick: Joystick(
+            keyboardEnable: true,
+            directional: JoystickDirectional(),
+            actions: [
+              JoystickAction(
+                actionId: 1,
+                margin: const EdgeInsets.all(65),
+              )
+            ],
+          ),
+          player: HumanPlayer(Position(4 * tileSize, 4 * tileSize)),
+          map: TiledWorldMap('tile/map.json', forceTileSize: tileSize)
+            ..registerObject(
+              'light',
+              (x, y, width, height) => Light(Position(x, y), width, height),
+            )
+            ..registerObject(
+                'orc', (x, y, width, height) => Orc(Position(x, y))),
+          lightingColorGame: Colors.black.withOpacity(0.65),
+          progress: Center(
+            child: Text(
+              'Loading...',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
       );
     });
   }
