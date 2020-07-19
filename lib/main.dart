@@ -1,3 +1,4 @@
+import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:minifantasy/game.dart';
 import 'package:minifantasy/sprite_sheet_orc.dart';
@@ -6,6 +7,8 @@ import 'package:minifantasy/sprite_sheet_player.dart';
 double tileSize = 20.0;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Flame.util.fullScreen();
+  await Flame.util.setLandscape();
   await SpriteSheetPlayer.load();
   await SpriteSheetOrc.load();
   runApp(MyApp());

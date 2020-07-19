@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
+import 'package:minifantasy/background.dart';
 import 'package:minifantasy/light.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/orc.dart';
@@ -40,6 +41,7 @@ class Game extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
           ),
+          background: Background(),
         ),
       );
     });
