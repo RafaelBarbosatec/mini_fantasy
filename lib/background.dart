@@ -13,7 +13,6 @@ class Background extends GameComponent {
 
   @override
   void update(double t) {
-    position = rectOrigin.translate(gameRef.gameCamera.position.x * -1.2, 0);
     super.update(t);
   }
 
@@ -25,6 +24,7 @@ class Background extends GameComponent {
 
   @override
   void render(Canvas canvas) {
+    position = rectOrigin.translate(gameRef.gameCamera.position.x * -0.8, 0);
     img.renderRect(canvas, position);
     super.render(canvas);
   }

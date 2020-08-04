@@ -12,9 +12,11 @@ class Light extends GameDecoration with Lighting {
           height: height,
         ) {
     lightingConfig = LightingConfig(
-        gameComponent: this,
-        radius: width * 2,
-        blurBorder: width * 1.5,
-        color: Colors.orange.withOpacity(0.1));
+      gameComponent: this,
+      radius: width * 2,
+      blurBorder: width * 1.5,
+      color: Colors.orange.withOpacity(0.2),
+      withPulse: true,
+    );
   }
 }
