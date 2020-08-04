@@ -7,8 +7,8 @@ import 'package:minifantasy/sprite_sheet_player.dart';
 double tileSize = 20.0;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Flame.util.fullScreen();
-  await Flame.util.setLandscape();
+  await Flame.util.fullScreen(); //TODO REMOVE TO RUN IN WEB
+  await Flame.util.setLandscape(); //TODO REMOVE TO RUN IN WEB
   await SpriteSheetPlayer.load();
   await SpriteSheetOrc.load();
   runApp(MyApp());
