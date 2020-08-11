@@ -23,6 +23,8 @@ class HumanPlayer extends SimplePlayer with Lighting {
           animRunRight: SpriteSheetPlayer.runBottomRight,
           animRunTopLeft: SpriteSheetPlayer.runTopLeft,
           animRunTopRight: SpriteSheetPlayer.runTopRight,
+          animRunBottomLeft: SpriteSheetPlayer.runBottomLeft,
+          animRunBottomRight: SpriteSheetPlayer.runBottomRight,
           speed: maxSpeed,
           width: tileSize * 2.9,
           height: tileSize * 2.9,
