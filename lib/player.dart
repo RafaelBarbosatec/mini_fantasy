@@ -45,7 +45,8 @@ class HumanPlayer extends SimplePlayer with Lighting {
   void joystickAction(JoystickActionEvent event) {
     if (isDead || lockMove) return;
     if ((event.id == 1 && event.event == ActionEvent.DOWN) ||
-        event.id == LogicalKeyboardKey.space.keyId) {
+        (event.id == LogicalKeyboardKey.space.keyId ||
+            event.id == LogicalKeyboardKey.select.keyId)) {
       _addAttackAnimation();
       this.simpleAttackMelee(
         damage: 10,
