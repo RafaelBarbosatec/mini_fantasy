@@ -4,6 +4,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flame/animation.dart' as FlameAnimation;
 
 class SpriteSheetPlayer {
+  static double animSpeed = 0.05;
   static Image spriteSheetPlayerRun;
   static Image spriteSheetPlayerAttack;
   static Image spriteSheetPlayerIdle;
@@ -83,6 +84,7 @@ class SpriteSheetPlayer {
       height: 21,
       count: 4,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 
@@ -93,6 +95,7 @@ class SpriteSheetPlayer {
       count: 4,
       startDy: 21,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 
@@ -103,6 +106,7 @@ class SpriteSheetPlayer {
       count: 4,
       startDy: 42,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 
@@ -113,6 +117,7 @@ class SpriteSheetPlayer {
       count: 4,
       startDy: 63,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 

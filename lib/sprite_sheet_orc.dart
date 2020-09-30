@@ -4,6 +4,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flame/animation.dart' as FlameAnimation;
 
 class SpriteSheetOrc {
+  static double animSpeed = 0.05;
   static Image spriteSheetOrcRun;
   static Image spriteSheetOrcAttack;
   static Image spriteSheetOrcIdle;
@@ -70,6 +71,7 @@ class SpriteSheetOrc {
       height: 21,
       count: 4,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 
@@ -80,6 +82,7 @@ class SpriteSheetOrc {
       count: 4,
       startDy: 21,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 
@@ -90,6 +93,7 @@ class SpriteSheetOrc {
       count: 4,
       startDy: 42,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 
@@ -100,6 +104,7 @@ class SpriteSheetOrc {
       count: 4,
       startDy: 63,
       loop: false,
+      stepTime: animSpeed,
     );
   }
 

@@ -11,18 +11,20 @@ class Orc extends SimpleEnemy {
   Orc(Position position)
       : super(
           initPosition: position,
-          animIdleLeft: SpriteSheetOrc.getIdleBottomLeft(),
-          animIdleRight: SpriteSheetOrc.getIdleBottomRight(),
-          animIdleBottomRight: SpriteSheetOrc.getIdleBottomRight(),
-          animIdleBottomLeft: SpriteSheetOrc.getIdleBottomLeft(),
-          animIdleTopRight: SpriteSheetOrc.getIdleTopRight(),
-          animIdleTopLeft: SpriteSheetOrc.getIdleTopLeft(),
-          animIdleTop: SpriteSheetOrc.getIdleTopRight(),
-          animIdleBottom: SpriteSheetOrc.getIdleBottomRight(),
-          animRunLeft: SpriteSheetOrc.getRunBottomLeft(),
-          animRunRight: SpriteSheetOrc.getRunBottomRight(),
-          animRunTopLeft: SpriteSheetOrc.getRunTopLeft(),
-          animRunTopRight: SpriteSheetOrc.getRunTopRight(),
+          animation: SimpleDirectionAnimation(
+            idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
+            idleRight: SpriteSheetOrc.getIdleBottomRight(),
+            idleBottomRight: SpriteSheetOrc.getIdleBottomRight(),
+            idleBottomLeft: SpriteSheetOrc.getIdleBottomLeft(),
+            idleTopRight: SpriteSheetOrc.getIdleTopRight(),
+            idleTopLeft: SpriteSheetOrc.getIdleTopLeft(),
+            idleTop: SpriteSheetOrc.getIdleTopRight(),
+            idleBottom: SpriteSheetOrc.getIdleBottomRight(),
+            runLeft: SpriteSheetOrc.getRunBottomLeft(),
+            runRight: SpriteSheetOrc.getRunBottomRight(),
+            runTopLeft: SpriteSheetOrc.getRunTopLeft(),
+            runTopRight: SpriteSheetOrc.getRunTopRight(),
+          ),
           speed: tileSize * 3,
           width: tileSize * 2.9,
           height: tileSize * 2.9,
@@ -65,7 +67,7 @@ class Orc extends SimpleEnemy {
   }
 
   @override
-  void receiveDamage(double damage, int from) {
+  void receiveDamage(double damage, dynamic from) {
     this.showDamage(
       damage,
       config: TextConfig(
@@ -79,84 +81,85 @@ class Orc extends SimpleEnemy {
   }
 
   void _addAttackAnimation() {
-    FlameAnimation.Animation animation;
+    FlameAnimation.Animation newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        animation = SpriteSheetOrc.getAttackBottomLeft();
+        newAnimation = SpriteSheetOrc.getAttackBottomLeft();
         break;
       case Direction.right:
-        animation = SpriteSheetOrc.getAttackBottomRight();
+        newAnimation = SpriteSheetOrc.getAttackBottomRight();
         break;
       case Direction.top:
         if (lastDirectionHorizontal == Direction.right) {
-          animation = SpriteSheetOrc.getAttackTopRight();
+          newAnimation = SpriteSheetOrc.getAttackTopRight();
         } else {
-          animation = SpriteSheetOrc.getAttackTopLeft();
+          newAnimation = SpriteSheetOrc.getAttackTopLeft();
         }
         break;
       case Direction.bottom:
         if (lastDirectionHorizontal == Direction.right) {
-          animation = SpriteSheetOrc.getAttackBottomRight();
+          newAnimation = SpriteSheetOrc.getAttackBottomRight();
         } else {
-          animation = SpriteSheetOrc.getAttackBottomLeft();
+          newAnimation = SpriteSheetOrc.getAttackBottomLeft();
         }
         break;
       case Direction.topLeft:
-        animation = SpriteSheetOrc.getAttackTopLeft();
+        newAnimation = SpriteSheetOrc.getAttackTopLeft();
         break;
       case Direction.topRight:
-        animation = SpriteSheetOrc.getAttackTopRight();
+        newAnimation = SpriteSheetOrc.getAttackTopRight();
         break;
       case Direction.bottomLeft:
-        animation = SpriteSheetOrc.getAttackBottomLeft();
+        newAnimation = SpriteSheetOrc.getAttackBottomLeft();
         break;
       case Direction.bottomRight:
-        animation = SpriteSheetOrc.getAttackBottomRight();
+        newAnimation = SpriteSheetOrc.getAttackBottomRight();
         break;
     }
-    addFastAnimation(
-      animation,
+    animation.playOnce(
+      newAnimation,
+      runToTheEnd: true,
     );
   }
 
   void _addDamageAnimation() {
     canMove = false;
-    FlameAnimation.Animation animation;
+    FlameAnimation.Animation newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        animation = SpriteSheetOrc.getDamageBottomLeft();
+        newAnimation = SpriteSheetOrc.getDamageBottomLeft();
         break;
       case Direction.right:
-        animation = SpriteSheetOrc.getDamageBottomRight();
+        newAnimation = SpriteSheetOrc.getDamageBottomRight();
         break;
       case Direction.top:
         if (lastDirectionHorizontal == Direction.right) {
-          animation = SpriteSheetOrc.getDamageTopRight();
+          newAnimation = SpriteSheetOrc.getDamageTopRight();
         } else {
-          animation = SpriteSheetOrc.getDamageTopLeft();
+          newAnimation = SpriteSheetOrc.getDamageTopLeft();
         }
         break;
       case Direction.bottom:
         if (lastDirectionHorizontal == Direction.right) {
-          animation = SpriteSheetOrc.getDamageBottomRight();
+          newAnimation = SpriteSheetOrc.getDamageBottomRight();
         } else {
-          animation = SpriteSheetOrc.getDamageBottomLeft();
+          newAnimation = SpriteSheetOrc.getDamageBottomLeft();
         }
         break;
       case Direction.topLeft:
-        animation = SpriteSheetOrc.getDamageTopLeft();
+        newAnimation = SpriteSheetOrc.getDamageTopLeft();
         break;
       case Direction.topRight:
-        animation = SpriteSheetOrc.getDamageTopRight();
+        newAnimation = SpriteSheetOrc.getDamageTopRight();
         break;
       case Direction.bottomLeft:
-        animation = SpriteSheetOrc.getDamageBottomLeft();
+        newAnimation = SpriteSheetOrc.getDamageBottomLeft();
         break;
       case Direction.bottomRight:
-        animation = SpriteSheetOrc.getDamageBottomRight();
+        newAnimation = SpriteSheetOrc.getDamageBottomRight();
         break;
     }
-    addFastAnimation(animation, onFinish: () {
+    animation.playOnce(newAnimation, onFinish: () {
       canMove = true;
     });
   }

@@ -14,17 +14,19 @@ class HumanPlayer extends SimplePlayer with Lighting {
   HumanPlayer(Position position)
       : super(
           initPosition: position,
-          animIdleLeft: SpriteSheetPlayer.idleBottomLeft,
-          animIdleRight: SpriteSheetPlayer.idleBottomRight,
-          animIdleTop: SpriteSheetPlayer.idleTopRight,
-          animIdleTopLeft: SpriteSheetPlayer.idleTopLeft,
-          animIdleTopRight: SpriteSheetPlayer.idleTopRight,
-          animRunLeft: SpriteSheetPlayer.runBottomLeft,
-          animRunRight: SpriteSheetPlayer.runBottomRight,
-          animRunTopLeft: SpriteSheetPlayer.runTopLeft,
-          animRunTopRight: SpriteSheetPlayer.runTopRight,
-          animRunBottomLeft: SpriteSheetPlayer.runBottomLeft,
-          animRunBottomRight: SpriteSheetPlayer.runBottomRight,
+          animation: SimpleDirectionAnimation(
+            idleLeft: SpriteSheetPlayer.idleBottomLeft,
+            idleRight: SpriteSheetPlayer.idleBottomRight,
+            idleTop: SpriteSheetPlayer.idleTopRight,
+            idleTopLeft: SpriteSheetPlayer.idleTopLeft,
+            idleTopRight: SpriteSheetPlayer.idleTopRight,
+            runLeft: SpriteSheetPlayer.runBottomLeft,
+            runRight: SpriteSheetPlayer.runBottomRight,
+            runTopLeft: SpriteSheetPlayer.runTopLeft,
+            runTopRight: SpriteSheetPlayer.runTopRight,
+            runBottomLeft: SpriteSheetPlayer.runBottomLeft,
+            runBottomRight: SpriteSheetPlayer.runBottomRight,
+          ),
           speed: maxSpeed,
           width: tileSize * 2.9,
           height: tileSize * 2.9,
@@ -35,7 +37,6 @@ class HumanPlayer extends SimplePlayer with Lighting {
           ),
         ) {
     lightingConfig = LightingConfig(
-      gameComponent: this,
       radius: width,
       blurBorder: width,
     );
@@ -66,7 +67,7 @@ class HumanPlayer extends SimplePlayer with Lighting {
   }
 
   @override
-  void receiveDamage(double damage, int from) {
+  void receiveDamage(double damage, dynamic from) {
     this.showDamage(
       damage,
       config: TextConfig(fontSize: tileSize * 0.6, color: Colors.red),
@@ -92,69 +93,64 @@ class HumanPlayer extends SimplePlayer with Lighting {
   }
 
   void _addAttackAnimation() {
-    FlameAnimation.Animation animation;
+    FlameAnimation.Animation newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        animation = SpriteSheetPlayer.getAttackBottomLeft();
+        newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
         break;
       case Direction.right:
-        animation = SpriteSheetPlayer.getAttackBottomRight();
+        newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
       case Direction.top:
-        animation = SpriteSheetPlayer.getAttackTopRight();
+        newAnimation = SpriteSheetPlayer.getAttackTopRight();
         break;
       case Direction.bottom:
-        animation = SpriteSheetPlayer.getAttackBottomRight();
+        newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
       case Direction.topLeft:
-        animation = SpriteSheetPlayer.getAttackTopLeft();
+        newAnimation = SpriteSheetPlayer.getAttackTopLeft();
         break;
       case Direction.topRight:
-        animation = SpriteSheetPlayer.getAttackTopRight();
+        newAnimation = SpriteSheetPlayer.getAttackTopRight();
         break;
       case Direction.bottomLeft:
-        animation = SpriteSheetPlayer.getAttackBottomLeft();
+        newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
         break;
       case Direction.bottomRight:
-        animation = SpriteSheetPlayer.getAttackBottomRight();
+        newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
     }
-    addFastAnimation(
-      animation,
-    );
+    animation.playOnce(newAnimation);
   }
 
   void _addDamageAnimation(VoidCallback onFinish) {
-    FlameAnimation.Animation animation;
+    FlameAnimation.Animation newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        animation = SpriteSheetPlayer.getDamageBottomLeft();
+        newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
         break;
       case Direction.right:
-        animation = SpriteSheetPlayer.getDamageBottomRight();
+        newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         break;
       case Direction.top:
-        animation = SpriteSheetPlayer.getDamageTopRight();
+        newAnimation = SpriteSheetPlayer.getDamageTopRight();
         break;
       case Direction.bottom:
-        animation = SpriteSheetPlayer.getDamageBottomRight();
+        newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         break;
       case Direction.topLeft:
-        animation = SpriteSheetPlayer.getDamageTopLeft();
+        newAnimation = SpriteSheetPlayer.getDamageTopLeft();
         break;
       case Direction.topRight:
-        animation = SpriteSheetPlayer.getDamageTopRight();
+        newAnimation = SpriteSheetPlayer.getDamageTopRight();
         break;
       case Direction.bottomLeft:
-        animation = SpriteSheetPlayer.getDamageBottomLeft();
+        newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
         break;
       case Direction.bottomRight:
-        animation = SpriteSheetPlayer.getDamageBottomRight();
+        newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         break;
     }
-    addFastAnimation(
-      animation,
-      onFinish: onFinish,
-    );
+    animation.playOnce(newAnimation,onFinish: onFinish);
   }
 }
