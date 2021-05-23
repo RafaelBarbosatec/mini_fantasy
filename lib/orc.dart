@@ -129,7 +129,7 @@ class Orc extends SimpleEnemy with ObjectCollision {
   }
 
   void _addDamageAnimation() {
-    // canMove = false;
+    canMove = false;
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
@@ -168,6 +168,7 @@ class Orc extends SimpleEnemy with ObjectCollision {
     animation.playOnce(
       newAnimation,
       position,
+      runToTheEnd: true,
       onFinish: () {
         canMove = true;
       },

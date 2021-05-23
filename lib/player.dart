@@ -72,7 +72,9 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
 
   @override
   void joystickChangeDirectional(JoystickDirectionalEvent event) {
-    if (lockMove) return;
+    if (lockMove) {
+      return;
+    }
     speed = maxSpeed * event.intensity;
     super.joystickChangeDirectional(event);
   }
@@ -83,7 +85,8 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       damage,
       initVelocityTop: -2,
     );
-    // lockMove = true;
+
+    lockMove = true;
     _addDamageAnimation(() {
       lockMove = false;
     });
@@ -164,6 +167,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     animation.playOnce(
       newAnimation,
       position,
+      runToTheEnd: true,
       onFinish: onFinish,
     );
   }
