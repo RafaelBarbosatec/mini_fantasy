@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:flame/animation.dart' as FlameAnimation;
 
 class SpriteSheetOrc {
   static double animSpeed = 0.05;
@@ -19,140 +18,198 @@ class SpriteSheetOrc {
     spriteSheetOrcDie = await Flame.images.load('orc_die.png');
   }
 
-  static FlameAnimation.Animation getRunBottomRight() {
-    return spriteSheetOrcRun.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-    );
+  static Future<SpriteAnimation> getRunBottomRight() {
+    return spriteSheetOrcRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getRunBottomLeft() {
-    return spriteSheetOrcRun.getAnimation(
-        width: 21, height: 21, count: 4, startDy: 21);
+  static Future<SpriteAnimation> getRunBottomLeft() {
+    return spriteSheetOrcRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 21,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getRunTopRight() {
-    return spriteSheetOrcRun.getAnimation(
-        width: 21, height: 21, count: 4, startDy: 42);
+  static Future<SpriteAnimation> getRunTopRight() {
+    return spriteSheetOrcRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 42,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getRunTopLeft() {
-    return spriteSheetOrcRun.getAnimation(
-        width: 21, height: 21, count: 4, startDy: 63);
+  static Future<SpriteAnimation> getRunTopLeft() {
+    return spriteSheetOrcRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 63,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getIdleBottomRight() {
-    return spriteSheetOrcIdle.getAnimation(
-      width: 21,
-      height: 21,
-      count: 16,
-    );
+  static Future<SpriteAnimation> getIdleBottomRight() {
+    return spriteSheetOrcIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getIdleBottomLeft() {
-    return spriteSheetOrcIdle.getAnimation(
-        width: 21, height: 21, count: 16, startDy: 21);
+  static Future<SpriteAnimation> getIdleBottomLeft() {
+    return spriteSheetOrcIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+          startDy: 21,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getIdleTopRight() {
-    return spriteSheetOrcIdle.getAnimation(
-        width: 21, height: 21, count: 16, startDy: 42);
+  static Future<SpriteAnimation> getIdleTopRight() {
+    return spriteSheetOrcIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+          startDy: 42,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getIdleTopLeft() {
-    return spriteSheetOrcIdle.getAnimation(
-        width: 21, height: 21, count: 16, startDy: 63);
+  static Future<SpriteAnimation> getIdleTopLeft() {
+    return spriteSheetOrcIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+          startDy: 63,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getAttackBottomRight() {
-    return spriteSheetOrcAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackBottomRight() {
+    return spriteSheetOrcAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getAttackBottomLeft() {
-    return spriteSheetOrcAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 21,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackBottomLeft() {
+    return spriteSheetOrcAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 21,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getAttackTopRight() {
-    return spriteSheetOrcAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 42,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackTopRight() {
+    return spriteSheetOrcAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 42,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getAttackTopLeft() {
-    return spriteSheetOrcAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 63,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackTopLeft() {
+    return spriteSheetOrcAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 63,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageBottomRight() {
-    return spriteSheetOrcDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageBottomRight() {
+    return spriteSheetOrcDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageBottomLeft() {
-    return spriteSheetOrcDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 21,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageBottomLeft() {
+    return spriteSheetOrcDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 21,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageTopRight() {
-    return spriteSheetOrcDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 42,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageTopRight() {
+    return spriteSheetOrcDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 42,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageTopLeft() {
-    return spriteSheetOrcDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 63,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageTopLeft() {
+    return spriteSheetOrcDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 63,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDie() {
-    return spriteSheetOrcDie.getAnimation(
-      width: 21,
-      height: 21,
-      count: 12,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDie() {
+    return spriteSheetOrcDie
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 12,
+          loop: false,
+        )
+        .asFuture();
   }
 }

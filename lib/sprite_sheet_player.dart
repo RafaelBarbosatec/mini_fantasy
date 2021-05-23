@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:flame/animation.dart' as FlameAnimation;
+import 'package:minifantasy/sprite_sheet_orc.dart';
 
 class SpriteSheetPlayer {
   static double animSpeed = 0.05;
@@ -10,14 +10,14 @@ class SpriteSheetPlayer {
   static Image spriteSheetPlayerIdle;
   static Image spriteSheetPlayerDie;
   static Image spriteSheetPlayerDamage;
-  static FlameAnimation.Animation runTopLeft;
-  static FlameAnimation.Animation runTopRight;
-  static FlameAnimation.Animation runBottomRight;
-  static FlameAnimation.Animation runBottomLeft;
-  static FlameAnimation.Animation idleBottomRight;
-  static FlameAnimation.Animation idleBottomLeft;
-  static FlameAnimation.Animation idleTopRight;
-  static FlameAnimation.Animation idleTopLeft;
+  static Future<SpriteAnimation> runTopLeft;
+  static Future<SpriteAnimation> runTopRight;
+  static Future<SpriteAnimation> runBottomRight;
+  static Future<SpriteAnimation> runBottomLeft;
+  static Future<SpriteAnimation> idleBottomRight;
+  static Future<SpriteAnimation> idleBottomLeft;
+  static Future<SpriteAnimation> idleTopRight;
+  static Future<SpriteAnimation> idleTopLeft;
 
   static Future load() async {
     spriteSheetPlayerRun = await Flame.images.load('human_run.png');
@@ -25,147 +25,181 @@ class SpriteSheetPlayer {
     spriteSheetPlayerIdle = await Flame.images.load('human_idle.png');
     spriteSheetPlayerDie = await Flame.images.load('human_die.png');
     spriteSheetPlayerDamage = await Flame.images.load('human_damage.png');
-    runBottomRight = spriteSheetPlayerRun.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-    );
-    runBottomLeft = spriteSheetPlayerRun.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 21,
-    );
-    runTopRight = spriteSheetPlayerRun.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 42,
-    );
-    runTopLeft = spriteSheetPlayerRun.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 63,
-    );
+    runBottomRight = spriteSheetPlayerRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+        )
+        .asFuture();
+    runBottomLeft = spriteSheetPlayerRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 21,
+        )
+        .asFuture();
+    runTopRight = spriteSheetPlayerRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 42,
+        )
+        .asFuture();
+    runTopLeft = spriteSheetPlayerRun
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 63,
+        )
+        .asFuture();
 
-    idleBottomRight = spriteSheetPlayerIdle.getAnimation(
-      width: 21,
-      height: 21,
-      count: 16,
-    );
-    idleBottomLeft = spriteSheetPlayerIdle.getAnimation(
-      width: 21,
-      height: 21,
-      count: 16,
-      startDy: 21,
-    );
+    idleBottomRight = spriteSheetPlayerIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+        )
+        .asFuture();
+    idleBottomLeft = spriteSheetPlayerIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+          startDy: 21,
+        )
+        .asFuture();
 
-    idleTopRight = spriteSheetPlayerIdle.getAnimation(
-      width: 21,
-      height: 21,
-      count: 16,
-      startDy: 42,
-    );
+    idleTopRight = spriteSheetPlayerIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+          startDy: 42,
+        )
+        .asFuture();
 
-    idleTopLeft = spriteSheetPlayerIdle.getAnimation(
-      width: 21,
-      height: 21,
-      count: 16,
-      startDy: 63,
-    );
+    idleTopLeft = spriteSheetPlayerIdle
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 16,
+          startDy: 63,
+        )
+        .asFuture();
 
     return Future.value();
   }
 
-  static FlameAnimation.Animation getAttackBottomRight() {
-    return spriteSheetPlayerAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackBottomRight() {
+    return spriteSheetPlayerAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getAttackBottomLeft() {
-    return spriteSheetPlayerAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 21,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackBottomLeft() {
+    return spriteSheetPlayerAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 21,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getAttackTopRight() {
-    return spriteSheetPlayerAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 42,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackTopRight() {
+    return spriteSheetPlayerAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 42,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getAttackTopLeft() {
-    return spriteSheetPlayerAttack.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 63,
-      loop: false,
-      stepTime: animSpeed,
-    );
+  static Future<SpriteAnimation> getAttackTopLeft() {
+    return spriteSheetPlayerAttack
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 63,
+          loop: false,
+          stepTime: animSpeed,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDie() {
-    return spriteSheetPlayerDie.getAnimation(
-      width: 21,
-      height: 21,
-      count: 12,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDie() {
+    return spriteSheetPlayerDie
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 12,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageTopRight() {
-    return spriteSheetPlayerDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageTopRight() {
+    return spriteSheetPlayerDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageTopLeft() {
-    return spriteSheetPlayerDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 21,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageTopLeft() {
+    return spriteSheetPlayerDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 21,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageBottomRight() {
-    return spriteSheetPlayerDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 42,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageBottomRight() {
+    return spriteSheetPlayerDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 42,
+          loop: false,
+        )
+        .asFuture();
   }
 
-  static FlameAnimation.Animation getDamageBottomLeft() {
-    return spriteSheetPlayerDamage.getAnimation(
-      width: 21,
-      height: 21,
-      count: 4,
-      startDy: 63,
-      loop: false,
-    );
+  static Future<SpriteAnimation> getDamageBottomLeft() {
+    return spriteSheetPlayerDamage
+        .getAnimation(
+          width: 21,
+          height: 21,
+          count: 4,
+          startDy: 63,
+          loop: false,
+        )
+        .asFuture();
   }
 }

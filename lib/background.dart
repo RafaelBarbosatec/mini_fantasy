@@ -3,13 +3,16 @@ import 'package:flutter/cupertino.dart';
 
 class Background extends GameComponent {
   Sprite img;
-  Rect rectOrigin;
+  Vector2Rect rectOrigin;
 
-  Background() {
-    img = Sprite('bg.jpeg');
+  @override
+  bool get isHud => true;
+
+  @override
+  Future<void> onLoad() async {
+    img = await Sprite.load('bg.jpeg');
+    return super.onLoad();
   }
-
-  bool isHud() => true;
 
   @override
   void update(double t) {
@@ -17,15 +20,26 @@ class Background extends GameComponent {
   }
 
   @override
-  void resize(Size size) {
-    position = rectOrigin = Rect.fromLTWH(0, 0, size.height * 3, size.height);
-    super.resize(size);
+  void onGameResize(Vector2 size) {
+    position = rectOrigin = Rect.fromLTWH(
+      0,
+      0,
+      size.y * 3,
+      size.x,
+    ).toVector2Rect();
+    super.onGameResize(size);
   }
 
   @override
   void render(Canvas canvas) {
-    position = rectOrigin.translate(gameRef.gameCamera.position.x * -0.8, 0);
-    img.renderRect(canvas, position);
+    position = rectOrigin.translate(
+      gameRef.camera.position.dx * -0.8,
+      0,
+    );
+    img.renderFromVector2Rect(canvas, position);
     super.render(canvas);
   }
+
+  @override
+  int get priority => LayerPriority.BACKGROUND;
 }

@@ -9,8 +9,8 @@ double tileSize = 20.0;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!kIsWeb) {
-    await Flame.util.fullScreen();
-    await Flame.util.setLandscape();
+    await Flame.device.fullScreen();
+    await Flame.device.setLandscape();
   }
   await SpriteSheetPlayer.load();
   await SpriteSheetOrc.load();
