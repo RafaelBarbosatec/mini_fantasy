@@ -30,13 +30,12 @@ class Game extends StatelessWidget {
           map: TiledWorldMap(
             'tile/map.json',
             forceTileSize: Size(tileSize, tileSize),
-          )
-            ..registerObject(
-              'light',
-              (x, y, width, height) => Light(Vector2(x, y), width, height),
-            )
-            ..registerObject(
-                'orc', (x, y, width, height) => Orc(Vector2(x, y))),
+            objectsBuilder: {
+              'light': (x, y, width, height) =>
+                  Light(Vector2(x, y), width, height),
+              'orc': (x, y, width, height) => Orc(Vector2(x, y)),
+            },
+          ),
           lightingColorGame: Colors.black.withOpacity(0.8),
           progress: Center(
             child: Text(
