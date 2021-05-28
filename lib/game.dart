@@ -31,9 +31,9 @@ class Game extends StatelessWidget {
             'tile/map.json',
             forceTileSize: Size(tileSize, tileSize),
             objectsBuilder: {
-              'light': (x, y, width, height) =>
-                  Light(Vector2(x, y), width, height),
-              'orc': (x, y, width, height) => Orc(Vector2(x, y)),
+              'light': (properties) =>
+                  Light(properties.position, properties.size),
+              'orc': (properties) => Orc(properties.position),
             },
           ),
           lightingColorGame: Colors.black.withOpacity(0.8),

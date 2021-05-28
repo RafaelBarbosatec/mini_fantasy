@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 class Light extends GameDecoration with Lighting {
   Light(
     Vector2 position,
-    double width,
-    double height,
+    Size size,
   ) : super(
           position: position,
-          width: width,
-          height: height,
+          width: size.width,
+          height: size.height,
         ) {
     setupLighting(
       LightingConfig(
