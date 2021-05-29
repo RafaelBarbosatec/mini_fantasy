@@ -56,10 +56,10 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   @override
   void joystickAction(JoystickActionEvent event) {
     if (isDead || lockMove) return;
-    if ((event.id == 1 && event.event == ActionEvent.DOWN) ||
-        ((event.id == LogicalKeyboardKey.space.keyId ||
-                event.id == LogicalKeyboardKey.select.keyId) &&
-            event.event == ActionEvent.DOWN)) {
+    if ((event.id == LogicalKeyboardKey.space.keyId ||
+            event.id == LogicalKeyboardKey.select.keyId ||
+            event.id == 1) &&
+        event.event == ActionEvent.DOWN) {
       _addAttackAnimation();
       this.simpleAttackMelee(
         damage: 10,
@@ -189,11 +189,5 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       runToTheEnd: true,
       onFinish: onFinish,
     );
-  }
-
-  @override
-  void idle() {
-    isIdle = false;
-    super.idle();
   }
 }
