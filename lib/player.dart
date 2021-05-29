@@ -117,10 +117,19 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
       case Direction.up:
-        newAnimation = SpriteSheetPlayer.getAttackTopRight();
+        if (lastDirectionHorizontal == Direction.left) {
+          newAnimation = SpriteSheetPlayer.getAttackTopLeft();
+        } else {
+          newAnimation = SpriteSheetPlayer.getAttackTopRight();
+        }
+
         break;
       case Direction.down:
-        newAnimation = SpriteSheetPlayer.getAttackBottomRight();
+        if (lastDirectionHorizontal == Direction.left) {
+          newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
+        } else {
+          newAnimation = SpriteSheetPlayer.getAttackBottomRight();
+        }
         break;
       case Direction.upLeft:
         newAnimation = SpriteSheetPlayer.getAttackTopLeft();
@@ -148,10 +157,18 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         break;
       case Direction.up:
-        newAnimation = SpriteSheetPlayer.getDamageTopRight();
+        if (lastDirectionHorizontal == Direction.left) {
+          newAnimation = SpriteSheetPlayer.getDamageTopLeft();
+        } else {
+          newAnimation = SpriteSheetPlayer.getDamageTopRight();
+        }
         break;
       case Direction.down:
-        newAnimation = SpriteSheetPlayer.getDamageBottomRight();
+        if (lastDirectionHorizontal == Direction.left) {
+          newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
+        } else {
+          newAnimation = SpriteSheetPlayer.getDamageBottomRight();
+        }
         break;
       case Direction.upLeft:
         newAnimation = SpriteSheetPlayer.getDamageTopLeft();
@@ -172,5 +189,11 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       runToTheEnd: true,
       onFinish: onFinish,
     );
+  }
+
+  @override
+  void idle() {
+    isIdle = false;
+    super.idle();
   }
 }

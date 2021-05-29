@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:minifantasy/sprite_sheet_orc.dart';
 
 class SpriteSheetPlayer {
   static double animSpeed = 0.05;

@@ -36,7 +36,7 @@ class Game extends StatelessWidget {
               'orc': (properties) => Orc(properties.position),
             },
           ),
-          lightingColorGame: Colors.black.withOpacity(0.8),
+          lightingColorGame: Colors.black.withOpacity(0.6),
           progress: Center(
             child: Text(
               'Loading...',
