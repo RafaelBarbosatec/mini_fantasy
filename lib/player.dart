@@ -32,8 +32,8 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         ) {
     setupLighting(
       LightingConfig(
-        radius: width,
-        blurBorder: width,
+        radius: width / 2,
+        blurBorder: width / 2,
         color: Colors.transparent,
       ),
     );
