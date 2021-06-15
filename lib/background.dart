@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/cupertino.dart';
 
-class Background extends GameComponent {
+class Background extends GameBackground {
   Sprite img;
   Vector2Rect rectOrigin;
 
