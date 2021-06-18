@@ -123,7 +123,6 @@ class Orc extends SimpleEnemy with ObjectCollision {
     }
     animation.playOnce(
       newAnimation,
-      position,
       runToTheEnd: true,
     );
   }
@@ -167,7 +166,6 @@ class Orc extends SimpleEnemy with ObjectCollision {
     }
     animation.playOnce(
       newAnimation,
-      position,
       runToTheEnd: true,
       onFinish: () {
         canMove = true;

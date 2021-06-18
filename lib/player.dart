@@ -144,7 +144,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
     }
-    animation.playOnce(newAnimation, position);
+    animation.playOnce(newAnimation);
   }
 
   void _addDamageAnimation(VoidCallback onFinish) {
@@ -185,7 +185,6 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     }
     animation.playOnce(
       newAnimation,
-      position,
       runToTheEnd: true,
       onFinish: onFinish,
     );
