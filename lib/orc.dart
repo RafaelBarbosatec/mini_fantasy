@@ -172,4 +172,23 @@ class Orc extends SimpleEnemy with ObjectCollision {
       },
     );
   }
+
+  @override
+  void render(Canvas canvas) {
+    this.drawDefaultLifeBar(
+      canvas,
+      drawInBottom: true,
+      margin: 0,
+      width: tileSize * 1.5,
+      borderWidth: tileSize / 5,
+      height: tileSize / 5,
+      borderColor: Colors.white.withOpacity(0.5),
+      borderRadius: BorderRadius.circular(2),
+      align: Offset(
+        tileSize / 1.5,
+        12,
+      ),
+    );
+    super.render(canvas);
+  }
 }
