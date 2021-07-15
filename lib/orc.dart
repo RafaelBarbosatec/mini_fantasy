@@ -4,7 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet_orc.dart';
 
-class Orc extends SimpleEnemy with ObjectCollision {
+class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   bool canMove = true;
 
   Orc(Vector2 position)
@@ -45,21 +45,27 @@ class Orc extends SimpleEnemy with ObjectCollision {
 
   @override
   void update(double dt) {
-    if (canMove)
-      this.seeAndMoveToPlayer(
+    if (canMove) {
+      this.seePlayer(
         radiusVision: tileSize * 2,
-        closePlayer: (player) {
-          this.simpleAttackMelee(
-            damage: 10,
-            width: tileSize * 1.5,
-            height: tileSize * 1.5,
-            interval: 800,
-            execute: () {
-              _addAttackAnimation();
+        observed: (player) {
+          this.followComponent(
+            player,
+            dt,
+            closeComponent: (comp) {
+              _execAttack();
             },
           );
         },
+        notObserved: () {
+          this.runRandomMovement(
+            dt,
+            speed: speed / 3,
+            maxDistance: (tileSize * 2).toInt(),
+          );
+        },
       );
+    }
     super.update(dt);
   }
 
@@ -185,10 +191,22 @@ class Orc extends SimpleEnemy with ObjectCollision {
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
       align: Offset(
-        tileSize / 1.5,
-        12,
+        tileSize * 0.7,
+        tileSize * 0.7,
       ),
     );
     super.render(canvas);
+  }
+
+  void _execAttack() {
+    this.simpleAttackMelee(
+      damage: 10,
+      width: tileSize * 1.5,
+      height: tileSize * 1.5,
+      interval: 800,
+      execute: () {
+        _addAttackAnimation();
+      },
+    );
   }
 }
