@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:minifantasy/background.dart';
 import 'package:minifantasy/light.dart';
 import 'package:minifantasy/main.dart';
@@ -17,7 +18,9 @@ class Game extends StatelessWidget {
         color: Colors.transparent,
         child: BonfireTiledWidget(
           joystick: Joystick(
-            keyboardEnable: true,
+            keyboardConfig: KeyboardConfig(acceptedKeys: [
+              LogicalKeyboardKey.space,
+            ]),
             directional: JoystickDirectional(),
             actions: [
               JoystickAction(

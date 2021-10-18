@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  bonfire: ^1.6.1
+  bonfire: ^1.9.0
 
 dev_dependencies:
   test: any

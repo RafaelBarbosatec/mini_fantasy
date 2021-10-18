@@ -97,7 +97,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
 
   @override
   void die() {
-    remove();
+    removeFromParent();
     gameRef.addGameComponent(
       AnimatedObjectOnce(
         animation: SpriteSheetPlayer.getDie(),

@@ -71,7 +71,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
 
   @override
   void die() {
-    remove();
+    removeFromParent();
     gameRef.addGameComponent(
       AnimatedObjectOnce(
         animation: SpriteSheetOrc.getDie(),
