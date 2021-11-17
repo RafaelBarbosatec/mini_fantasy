@@ -34,8 +34,10 @@ class Game extends StatelessWidget {
             'tile/map.json',
             forceTileSize: Size(tileSize, tileSize),
             objectsBuilder: {
-              'light': (properties) =>
-                  Light(properties.position, properties.size),
+              'light': (properties) => Light(
+                    properties.position,
+                    properties.size,
+                  ),
               'orc': (properties) => Orc(properties.position),
             },
           ),
