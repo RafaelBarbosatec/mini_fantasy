@@ -26,31 +26,27 @@ class SpriteSheetPlayer {
     spriteSheetPlayerDamage = await Flame.images.load('human_damage.png');
     runBottomRight = spriteSheetPlayerRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
         )
         .asFuture();
     runBottomLeft = spriteSheetPlayerRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 21,
         )
         .asFuture();
     runTopRight = spriteSheetPlayerRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 42,
         )
         .asFuture();
     runTopLeft = spriteSheetPlayerRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 63,
         )
@@ -58,15 +54,13 @@ class SpriteSheetPlayer {
 
     idleBottomRight = spriteSheetPlayerIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
         )
         .asFuture();
     idleBottomLeft = spriteSheetPlayerIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
           startDy: 21,
         )
@@ -74,8 +68,7 @@ class SpriteSheetPlayer {
 
     idleTopRight = spriteSheetPlayerIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
           startDy: 42,
         )
@@ -83,8 +76,7 @@ class SpriteSheetPlayer {
 
     idleTopLeft = spriteSheetPlayerIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
           startDy: 63,
         )
@@ -96,8 +88,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getAttackBottomRight() {
     return spriteSheetPlayerAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           loop: false,
           stepTime: animSpeed,
@@ -108,8 +99,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getAttackBottomLeft() {
     return spriteSheetPlayerAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 21,
           loop: false,
@@ -121,8 +111,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getAttackTopRight() {
     return spriteSheetPlayerAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 42,
           loop: false,
@@ -134,8 +123,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getAttackTopLeft() {
     return spriteSheetPlayerAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 63,
           loop: false,
@@ -147,8 +135,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getDie() {
     return spriteSheetPlayerDie
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 12,
           loop: false,
         )
@@ -158,8 +145,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getDamageTopRight() {
     return spriteSheetPlayerDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           loop: false,
         )
@@ -169,8 +155,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getDamageTopLeft() {
     return spriteSheetPlayerDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 21,
           loop: false,
@@ -181,8 +166,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getDamageBottomRight() {
     return spriteSheetPlayerDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 42,
           loop: false,
@@ -193,8 +177,7 @@ class SpriteSheetPlayer {
   static Future<SpriteAnimation> getDamageBottomLeft() {
     return spriteSheetPlayerDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 63,
           loop: false,

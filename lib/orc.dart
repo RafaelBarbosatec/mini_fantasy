@@ -1,6 +1,5 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet_orc.dart';
 
@@ -25,14 +24,13 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
             runUpRight: SpriteSheetOrc.getRunTopRight(),
           ),
           speed: tileSize * 3,
-          width: tileSize * 2.9,
-          height: tileSize * 2.9,
+          size: Vector2.all(tileSize * 2.9),
         ) {
     setupCollision(
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Size(
+            size: Vector2(
               tileSize * 0.4,
               tileSize * 0.5,
             ),
@@ -71,12 +69,12 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
 
   @override
   void die() {
-    removeFromParent();
-    gameRef.add(
-      AnimatedObjectOnce(
-        animation: SpriteSheetOrc.getDie(),
-        position: this.position,
-      ),
+    canMove = false;
+    animation.playOnce(
+      SpriteSheetOrc.getDie(),
+      onFinish: () {
+        removeFromParent();
+      },
     );
     super.die();
   }
@@ -181,28 +179,29 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
 
   @override
   void render(Canvas canvas) {
-    this.drawDefaultLifeBar(
-      canvas,
-      drawInBottom: true,
-      margin: 0,
-      width: tileSize * 1.5,
-      borderWidth: tileSize / 5,
-      height: tileSize / 5,
-      borderColor: Colors.white.withOpacity(0.5),
-      borderRadius: BorderRadius.circular(2),
-      align: Offset(
-        tileSize * 0.7,
-        tileSize * 0.7,
-      ),
-    );
+    if (!isDead) {
+      this.drawDefaultLifeBar(
+        canvas,
+        drawInBottom: true,
+        margin: 0,
+        width: tileSize * 1.5,
+        borderWidth: tileSize / 5,
+        height: tileSize / 5,
+        borderColor: Colors.white.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(2),
+        align: Offset(
+          tileSize * 0.7,
+          tileSize * 0.7,
+        ),
+      );
+    }
     super.render(canvas);
   }
 
   void _execAttack() {
     this.simpleAttackMelee(
       damage: 10,
-      width: tileSize * 1.5,
-      height: tileSize * 1.5,
+      size: Vector2.all(tileSize * 1.5),
       interval: 800,
       execute: () {
         _addAttackAnimation();

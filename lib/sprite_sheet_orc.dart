@@ -21,8 +21,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getRunBottomRight() {
     return spriteSheetOrcRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
         )
         .asFuture();
@@ -31,8 +30,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getRunBottomLeft() {
     return spriteSheetOrcRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 21,
         )
@@ -42,8 +40,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getRunTopRight() {
     return spriteSheetOrcRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 42,
         )
@@ -53,8 +50,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getRunTopLeft() {
     return spriteSheetOrcRun
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 63,
         )
@@ -64,8 +60,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getIdleBottomRight() {
     return spriteSheetOrcIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
         )
         .asFuture();
@@ -74,8 +69,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getIdleBottomLeft() {
     return spriteSheetOrcIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
           startDy: 21,
         )
@@ -85,8 +79,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getIdleTopRight() {
     return spriteSheetOrcIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
           startDy: 42,
         )
@@ -96,8 +89,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getIdleTopLeft() {
     return spriteSheetOrcIdle
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 16,
           startDy: 63,
         )
@@ -107,8 +99,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getAttackBottomRight() {
     return spriteSheetOrcAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           loop: false,
           stepTime: animSpeed,
@@ -119,8 +110,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getAttackBottomLeft() {
     return spriteSheetOrcAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 21,
           loop: false,
@@ -132,8 +122,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getAttackTopRight() {
     return spriteSheetOrcAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 42,
           loop: false,
@@ -145,8 +134,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getAttackTopLeft() {
     return spriteSheetOrcAttack
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 63,
           loop: false,
@@ -158,8 +146,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getDamageBottomRight() {
     return spriteSheetOrcDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           loop: false,
         )
@@ -169,8 +156,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getDamageBottomLeft() {
     return spriteSheetOrcDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 21,
           loop: false,
@@ -181,8 +167,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getDamageTopRight() {
     return spriteSheetOrcDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 42,
           loop: false,
@@ -193,8 +178,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getDamageTopLeft() {
     return spriteSheetOrcDamage
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 4,
           startDy: 63,
           loop: false,
@@ -205,8 +189,7 @@ class SpriteSheetOrc {
   static Future<SpriteAnimation> getDie() {
     return spriteSheetOrcDie
         .getAnimation(
-          width: 21,
-          height: 21,
+          size: Vector2.all(21),
           count: 12,
           loop: false,
         )

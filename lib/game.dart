@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:minifantasy/background.dart';
 import 'package:minifantasy/light.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/orc.dart';
@@ -42,13 +41,15 @@ class Game extends StatelessWidget {
             },
           ),
           lightingColorGame: Colors.black.withOpacity(0.7),
-          progress: Center(
-            child: Text(
-              'Loading...',
-              style: TextStyle(color: Colors.white),
+          progress: Container(
+            color: Colors.black,
+            child: Center(
+              child: Text(
+                'Loading...',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
-          background: Background(),
         ),
       );
     });

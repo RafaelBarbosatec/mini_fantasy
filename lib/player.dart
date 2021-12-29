@@ -1,7 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet_player.dart';
 
@@ -27,8 +26,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
             runDownRight: SpriteSheetPlayer.runBottomRight,
           ),
           speed: maxSpeed,
-          width: tileSize * 2.9,
-          height: tileSize * 2.9,
+          size: Vector2.all(tileSize * 2.9),
         ) {
     setupLighting(
       LightingConfig(
@@ -42,7 +40,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Size(tileSize * 0.4, tileSize * 0.5),
+            size: Vector2(tileSize * 0.4, tileSize * 0.5),
             align: Vector2(
               tileSize * 1.2,
               tileSize * 1.5,
@@ -63,8 +61,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       _addAttackAnimation();
       this.simpleAttackMelee(
         damage: 10,
-        width: tileSize * 1.5,
-        height: tileSize * 1.5,
+        size: Vector2.all(tileSize * 1.5),
         withPush: false,
       );
     }
@@ -102,6 +99,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       AnimatedObjectOnce(
         animation: SpriteSheetPlayer.getDie(),
         position: this.position,
+        size: this.size,
       ),
     );
     super.die();
