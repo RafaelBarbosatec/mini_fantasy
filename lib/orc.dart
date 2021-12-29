@@ -31,10 +31,10 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
         collisions: [
           CollisionArea.rectangle(
             size: Vector2(
-              tileSize * 0.4,
-              tileSize * 0.5,
+              size.x * 0.2,
+              size.y * 0.15,
             ),
-            align: Vector2(tileSize * 1.2, tileSize * 1.5),
+            align: Vector2(tileSize * 1.15, tileSize * 1.5),
           ),
         ],
       ),
@@ -75,6 +75,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
       onFinish: () {
         removeFromParent();
       },
+      runToTheEnd: true,
     );
     super.die();
   }
