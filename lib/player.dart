@@ -78,7 +78,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   }
 
   @override
-  void receiveDamage(double damage, dynamic from) {
+  void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
     this.showDamage(
       damage,
       initVelocityTop: -2,
@@ -89,7 +89,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     _addDamageAnimation(() {
       lockMove = false;
     });
-    super.receiveDamage(damage, from);
+    super.receiveDamage(attacker, damage, from);
   }
 
   @override

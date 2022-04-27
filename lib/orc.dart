@@ -81,13 +81,13 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   }
 
   @override
-  void receiveDamage(double damage, dynamic from) {
+  void receiveDamage(AttackFromEnum attacker, double damage, identify) {
     this.showDamage(
       damage,
       initVelocityTop: -2,
     );
     _addDamageAnimation();
-    super.receiveDamage(damage, from);
+    super.receiveDamage(attacker, damage, identify);
   }
 
   void _addAttackAnimation() {
