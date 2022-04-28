@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:minifantasy/light.dart';
+import 'package:minifantasy/components/human_player.dart';
+import 'package:minifantasy/components/light.dart';
+import 'package:minifantasy/components/orc.dart';
 import 'package:minifantasy/main.dart';
-import 'package:minifantasy/orc.dart';
-import 'package:minifantasy/player.dart';
 
 class Game extends StatelessWidget {
   @override
@@ -17,9 +17,11 @@ class Game extends StatelessWidget {
         color: Colors.transparent,
         child: BonfireTiledWidget(
           joystick: Joystick(
-            keyboardConfig: KeyboardConfig(acceptedKeys: [
-              LogicalKeyboardKey.space,
-            ]),
+            keyboardConfig: KeyboardConfig(
+              acceptedKeys: [
+                LogicalKeyboardKey.space,
+              ],
+            ),
             directional: JoystickDirectional(),
             actions: [
               JoystickAction(

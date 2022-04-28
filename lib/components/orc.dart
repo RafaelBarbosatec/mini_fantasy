@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:minifantasy/main.dart';
-import 'package:minifantasy/sprite_sheet_orc.dart';
+import 'package:minifantasy/sprite_sheet/sprite_sheet_orc.dart';
 
 class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   bool canMove = true;

@@ -2,8 +2,8 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:minifantasy/game.dart';
-import 'package:minifantasy/sprite_sheet_orc.dart';
-import 'package:minifantasy/sprite_sheet_player.dart';
+import 'package:minifantasy/sprite_sheet/sprite_sheet_orc.dart';
+import 'package:minifantasy/sprite_sheet/sprite_sheet_player.dart';
 
 double tileSize = 20.0;
 void main() async {

@@ -2,7 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:minifantasy/main.dart';
-import 'package:minifantasy/sprite_sheet_player.dart';
+import 'package:minifantasy/sprite_sheet/sprite_sheet_player.dart';
 
 class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   static double maxSpeed = tileSize * 4;
