@@ -70,7 +70,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
 
   @override
   void joystickChangeDirectional(JoystickDirectionalEvent event) {
-    if (lockMove) {
+    if (lockMove || isDead) {
       return;
     }
     speed = maxSpeed * event.intensity;
@@ -79,28 +79,30 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
 
   @override
   void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
-    this.showDamage(
-      damage,
-      initVelocityTop: -2,
-    );
+    if (!isDead) {
+      this.showDamage(
+        damage,
+        initVelocityTop: -2,
+        config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
+      );
 
-    lockMove = true;
-    idle();
-    _addDamageAnimation(() {
-      lockMove = false;
-    });
+      lockMove = true;
+      idle();
+      _addDamageAnimation(() {
+        lockMove = false;
+      });
+    }
     super.receiveDamage(attacker, damage, from);
   }
 
   @override
   void die() {
-    removeFromParent();
-    gameRef.add(
-      AnimatedObjectOnce(
-        animation: SpriteSheetPlayer.getDie(),
-        position: this.position,
-        size: this.size,
-      ),
+    animation.playOnce(
+      SpriteSheetPlayer.getDie(),
+      onFinish: () {
+        removeFromParent();
+      },
+      runToTheEnd: true,
     );
     super.die();
   }
