@@ -15,7 +15,7 @@ class Game extends StatelessWidget {
       tileSize = max(constraints.maxHeight, constraints.maxWidth) / 40;
       return Material(
         color: Colors.transparent,
-        child: BonfireTiledWidget(
+        child: BonfireWidget(
           joystick: Joystick(
             keyboardConfig: KeyboardConfig(
               acceptedKeys: [
@@ -31,9 +31,9 @@ class Game extends StatelessWidget {
             ],
           ),
           player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
-          map: TiledWorldMap(
+          map: WorldMapByTiled(
             'tile/map.json',
-            forceTileSize: Size(tileSize, tileSize),
+            forceTileSize: Vector2.all(tileSize),
             objectsBuilder: {
               'light': (properties) => Light(
                     properties.position,
