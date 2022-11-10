@@ -147,6 +147,7 @@ class SpriteSheetPlayer {
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
+          startDy: 42,
           loop: false,
         )
         .asFuture();
@@ -157,7 +158,7 @@ class SpriteSheetPlayer {
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
-          startDy: 21,
+          startDy: 63,
           loop: false,
         )
         .asFuture();
@@ -168,7 +169,6 @@ class SpriteSheetPlayer {
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
-          startDy: 42,
           loop: false,
         )
         .asFuture();
@@ -179,7 +179,7 @@ class SpriteSheetPlayer {
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
-          startDy: 63,
+          startDy: 21,
           loop: false,
         )
         .asFuture();
