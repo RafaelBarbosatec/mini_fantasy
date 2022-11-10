@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet/sprite_sheet_orc.dart';
 
-class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
+class Orc extends SimpleEnemy
+    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
   bool canMove = true;
 
   Orc(Vector2 position)
@@ -38,6 +39,16 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
           ),
         ],
       ),
+    );
+
+    setupBarLife(
+      margin: 0,
+      size: Vector2(tileSize * 1.5, tileSize / 5),
+      borderWidth: tileSize / 5,
+      borderColor: Colors.white.withOpacity(0.5),
+      borderRadius: BorderRadius.circular(2),
+      barLifePosition: BarLifePorition.bottom,
+      offset: Vector2(0, tileSize * -0.7),
     );
   }
 
@@ -179,27 +190,6 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
         canMove = true;
       },
     );
-  }
-
-  @override
-  void render(Canvas canvas) {
-    if (!isDead) {
-      this.drawDefaultLifeBar(
-        canvas,
-        drawInBottom: true,
-        margin: 0,
-        width: tileSize * 1.5,
-        borderWidth: tileSize / 5,
-        height: tileSize / 5,
-        borderColor: Colors.white.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(2),
-        align: Offset(
-          tileSize * 0.7,
-          tileSize * 0.7,
-        ),
-      );
-    }
-    super.render(canvas);
   }
 
   void _execAttack() {
