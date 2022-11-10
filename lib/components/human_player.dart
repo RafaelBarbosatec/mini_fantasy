@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet/sprite_sheet_player.dart';
 
-class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
+class HumanPlayer extends SimplePlayer
+    with Lighting, ObjectCollision, UseBarLife {
   static double maxSpeed = tileSize * 4;
 
   bool lockMove = false;
@@ -43,6 +44,12 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
           ),
         ],
       ),
+    );
+
+    setupBarLife(
+      borderRadius: BorderRadius.circular(2),
+      offset: Vector2(0, tileSize * 0.8),
+      size: Vector2(tileSize * 2, tileSize / 3),
     );
   }
 
