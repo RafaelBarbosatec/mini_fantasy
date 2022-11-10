@@ -13,16 +13,11 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       : super(
           position: position,
           animation: SimpleDirectionAnimation(
-            idleLeft: SpriteSheetPlayer.idleBottomLeft,
             idleRight: SpriteSheetPlayer.idleBottomRight,
             idleUp: SpriteSheetPlayer.idleTopRight,
-            idleUpLeft: SpriteSheetPlayer.idleTopLeft,
             idleUpRight: SpriteSheetPlayer.idleTopRight,
-            runLeft: SpriteSheetPlayer.runBottomLeft,
             runRight: SpriteSheetPlayer.runBottomRight,
-            runUpLeft: SpriteSheetPlayer.runTopLeft,
             runUpRight: SpriteSheetPlayer.runTopRight,
-            runDownLeft: SpriteSheetPlayer.runBottomLeft,
             runDownRight: SpriteSheetPlayer.runBottomRight,
           ),
           speed: maxSpeed,
@@ -103,6 +98,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         removeFromParent();
       },
       runToTheEnd: true,
+      useCompFlip: true,
     );
     super.die();
   }
@@ -111,8 +107,6 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
@@ -132,27 +126,21 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         }
         break;
       case Direction.upLeft:
-        newAnimation = SpriteSheetPlayer.getAttackTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetPlayer.getAttackTopRight();
         break;
       case Direction.downLeft:
-        newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
     }
-    animation.playOnce(newAnimation);
+    animation.playOnce(newAnimation, useCompFlip: true);
   }
 
   void _addDamageAnimation(VoidCallback onFinish) {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         break;
@@ -171,14 +159,10 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         }
         break;
       case Direction.upLeft:
-        newAnimation = SpriteSheetPlayer.getDamageTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetPlayer.getDamageTopRight();
         break;
       case Direction.downLeft:
-        newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         break;
@@ -187,6 +171,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       newAnimation,
       runToTheEnd: true,
       onFinish: onFinish,
+      useCompFlip: true,
     );
   }
 }

@@ -11,17 +11,12 @@ class Orc extends SimpleEnemy
       : super(
           position: position,
           animation: SimpleDirectionAnimation(
-            idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
             idleRight: SpriteSheetOrc.getIdleBottomRight(),
             idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
-            idleDownLeft: SpriteSheetOrc.getIdleBottomLeft(),
             idleUpRight: SpriteSheetOrc.getIdleTopRight(),
-            idleUpLeft: SpriteSheetOrc.getIdleTopLeft(),
             idleUp: SpriteSheetOrc.getIdleTopRight(),
             idleDown: SpriteSheetOrc.getIdleBottomRight(),
-            runLeft: SpriteSheetOrc.getRunBottomLeft(),
             runRight: SpriteSheetOrc.getRunBottomRight(),
-            runUpLeft: SpriteSheetOrc.getRunTopLeft(),
             runUpRight: SpriteSheetOrc.getRunTopRight(),
           ),
           speed: tileSize * 3,
@@ -88,6 +83,7 @@ class Orc extends SimpleEnemy
         removeFromParent();
       },
       runToTheEnd: true,
+      useCompFlip: true,
     );
     super.die();
   }
@@ -109,8 +105,6 @@ class Orc extends SimpleEnemy
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        newAnimation = SpriteSheetOrc.getAttackBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
         break;
@@ -129,14 +123,10 @@ class Orc extends SimpleEnemy
         }
         break;
       case Direction.upLeft:
-        newAnimation = SpriteSheetOrc.getAttackTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetOrc.getAttackTopRight();
         break;
       case Direction.downLeft:
-        newAnimation = SpriteSheetOrc.getAttackBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
         break;
@@ -144,6 +134,7 @@ class Orc extends SimpleEnemy
     animation.playOnce(
       newAnimation,
       runToTheEnd: true,
+      useCompFlip: true,
     );
   }
 
@@ -152,8 +143,6 @@ class Orc extends SimpleEnemy
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
-        newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetOrc.getDamageBottomRight();
         break;
@@ -172,14 +161,10 @@ class Orc extends SimpleEnemy
         }
         break;
       case Direction.upLeft:
-        newAnimation = SpriteSheetOrc.getDamageTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetOrc.getDamageTopRight();
         break;
       case Direction.downLeft:
-        newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetOrc.getDamageBottomRight();
         break;
@@ -187,6 +172,7 @@ class Orc extends SimpleEnemy
     animation.playOnce(
       newAnimation,
       runToTheEnd: true,
+      useCompFlip: true,
       onFinish: () {
         canMove = true;
       },
@@ -198,9 +184,7 @@ class Orc extends SimpleEnemy
       damage: 10,
       size: Vector2.all(tileSize * 1.5),
       interval: 800,
-      execute: () {
-        _addAttackAnimation();
-      },
+      execute: _addAttackAnimation,
     );
   }
 }
