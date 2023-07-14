@@ -11,8 +11,9 @@ import 'package:minifantasy/main.dart';
 class Game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    double maxSize = max(size.width, size.height);
     return LayoutBuilder(builder: (context, constraints) {
-      tileSize = max(constraints.maxHeight, constraints.maxWidth) / 40;
       return Material(
         color: Colors.transparent,
         child: BonfireWidget(
@@ -31,6 +32,7 @@ class Game extends StatelessWidget {
             ],
           ),
           player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
+          cameraConfig: CameraConfig(zoom: maxSize / (tileSize * 20)),
           map: WorldMapByTiled(
             'tile/map.json',
             forceTileSize: Vector2.all(tileSize),

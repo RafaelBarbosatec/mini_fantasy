@@ -4,19 +4,19 @@ import 'package:bonfire/bonfire.dart';
 
 class SpriteSheetPlayer {
   static double animSpeed = 0.05;
-  static Image spriteSheetPlayerRun;
-  static Image spriteSheetPlayerAttack;
-  static Image spriteSheetPlayerIdle;
-  static Image spriteSheetPlayerDie;
-  static Image spriteSheetPlayerDamage;
-  static Future<SpriteAnimation> runTopLeft;
-  static Future<SpriteAnimation> runTopRight;
-  static Future<SpriteAnimation> runBottomRight;
-  static Future<SpriteAnimation> runBottomLeft;
-  static Future<SpriteAnimation> idleBottomRight;
-  static Future<SpriteAnimation> idleBottomLeft;
-  static Future<SpriteAnimation> idleTopRight;
-  static Future<SpriteAnimation> idleTopLeft;
+  static late Image spriteSheetPlayerRun;
+  static late Image spriteSheetPlayerAttack;
+  static late Image spriteSheetPlayerIdle;
+  static late Image spriteSheetPlayerDie;
+  static late Image spriteSheetPlayerDamage;
+  static late SpriteAnimation runTopLeft;
+  static late SpriteAnimation runTopRight;
+  static late SpriteAnimation runBottomRight;
+  static late SpriteAnimation runBottomLeft;
+  static late SpriteAnimation idleBottomRight;
+  static late SpriteAnimation idleBottomLeft;
+  static late SpriteAnimation idleTopRight;
+  static late SpriteAnimation idleTopLeft;
 
   static Future load() async {
     spriteSheetPlayerRun = await Flame.images.load('human_run.png');
@@ -24,63 +24,47 @@ class SpriteSheetPlayer {
     spriteSheetPlayerIdle = await Flame.images.load('human_idle.png');
     spriteSheetPlayerDie = await Flame.images.load('human_die.png');
     spriteSheetPlayerDamage = await Flame.images.load('human_damage.png');
-    runBottomRight = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 4,
-        )
-        .asFuture();
-    runBottomLeft = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 4,
-          startDy: 21,
-        )
-        .asFuture();
-    runTopRight = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 4,
-          startDy: 42,
-        )
-        .asFuture();
-    runTopLeft = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 4,
-          startDy: 63,
-        )
-        .asFuture();
+    runBottomRight = spriteSheetPlayerRun.getAnimation(
+      size: Vector2.all(21),
+      count: 4,
+    );
+    runBottomLeft = spriteSheetPlayerRun.getAnimation(
+      size: Vector2.all(21),
+      count: 4,
+      startDy: 21,
+    );
+    runTopRight = spriteSheetPlayerRun.getAnimation(
+      size: Vector2.all(21),
+      count: 4,
+      startDy: 42,
+    );
+    runTopLeft = spriteSheetPlayerRun.getAnimation(
+      size: Vector2.all(21),
+      count: 4,
+      startDy: 63,
+    );
 
-    idleBottomRight = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 16,
-        )
-        .asFuture();
-    idleBottomLeft = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 16,
-          startDy: 21,
-        )
-        .asFuture();
+    idleBottomRight = spriteSheetPlayerIdle.getAnimation(
+      size: Vector2.all(21),
+      count: 16,
+    );
+    idleBottomLeft = spriteSheetPlayerIdle.getAnimation(
+      size: Vector2.all(21),
+      count: 16,
+      startDy: 21,
+    );
 
-    idleTopRight = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 16,
-          startDy: 42,
-        )
-        .asFuture();
+    idleTopRight = spriteSheetPlayerIdle.getAnimation(
+      size: Vector2.all(21),
+      count: 16,
+      startDy: 42,
+    );
 
-    idleTopLeft = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 16,
-          startDy: 63,
-        )
-        .asFuture();
+    idleTopLeft = spriteSheetPlayerIdle.getAnimation(
+      size: Vector2.all(21),
+      count: 16,
+      startDy: 63,
+    );
 
     return Future.value();
   }

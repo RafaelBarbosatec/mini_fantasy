@@ -77,7 +77,7 @@ class Orc extends SimpleEnemy
   @override
   void die() {
     canMove = false;
-    animation.playOnce(
+    animation?.playOnce(
       SpriteSheetOrc.getDie(),
       onFinish: () {
         removeFromParent();
@@ -131,7 +131,7 @@ class Orc extends SimpleEnemy
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
         break;
     }
-    animation.playOnce(
+    animation?.playOnce(
       newAnimation,
       runToTheEnd: true,
       useCompFlip: true,
@@ -169,7 +169,7 @@ class Orc extends SimpleEnemy
         newAnimation = SpriteSheetOrc.getDamageBottomRight();
         break;
     }
-    animation.playOnce(
+    animation?.playOnce(
       newAnimation,
       runToTheEnd: true,
       useCompFlip: true,

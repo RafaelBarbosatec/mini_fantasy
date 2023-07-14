@@ -4,11 +4,11 @@ import 'package:bonfire/bonfire.dart';
 
 class SpriteSheetOrc {
   static double animSpeed = 0.05;
-  static Image spriteSheetOrcRun;
-  static Image spriteSheetOrcAttack;
-  static Image spriteSheetOrcIdle;
-  static Image spriteSheetOrcDamage;
-  static Image spriteSheetOrcDie;
+  static late Image spriteSheetOrcRun;
+  static late Image spriteSheetOrcAttack;
+  static late Image spriteSheetOrcIdle;
+  static late Image spriteSheetOrcDamage;
+  static late Image spriteSheetOrcDie;
 
   static Future load() async {
     spriteSheetOrcRun = await Flame.images.load('orc_run.png');

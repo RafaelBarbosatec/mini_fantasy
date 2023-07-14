@@ -99,7 +99,7 @@ class HumanPlayer extends SimplePlayer
 
   @override
   void die() {
-    animation.playOnce(
+    animation?.playOnce(
       SpriteSheetPlayer.getDie(),
       onFinish: () {
         removeFromParent();
@@ -141,7 +141,7 @@ class HumanPlayer extends SimplePlayer
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         break;
     }
-    animation.playOnce(newAnimation, useCompFlip: true);
+    animation?.playOnce(newAnimation, useCompFlip: true);
   }
 
   void _addDamageAnimation(VoidCallback onFinish) {
@@ -174,7 +174,7 @@ class HumanPlayer extends SimplePlayer
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         break;
     }
-    animation.playOnce(
+    animation?.playOnce(
       newAnimation,
       runToTheEnd: true,
       onFinish: onFinish,
