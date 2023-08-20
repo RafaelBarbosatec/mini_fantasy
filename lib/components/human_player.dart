@@ -38,7 +38,7 @@ class HumanPlayer extends SimplePlayer
       position: Vector2(width / 8, 8),
     );
 
-    movementByJoystickSettings = MovementByJoystickProps(
+    setupMovementByJoystick(
       intencityEnabled: true,
     );
   }
@@ -186,6 +186,7 @@ class HumanPlayer extends SimplePlayer
       damage: 10,
       size: Vector2.all(tileSize * 1.5),
       withPush: false,
+      
     );
   }
 }

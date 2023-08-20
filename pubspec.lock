@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: bonfire
-      sha256: "4d9dd75bec3a87a3a52c679866012c790f7fb43527f7645707736979b2615631"
+      sha256: "8b837bf2da5919b6cf540585feebb8d68b9f90a5bb0f338cf4bdef835767eef6"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0-beta.6"
+    version: "3.0.0-beta.7"
   boolean_selector:
     dependency: transitive
     description:
