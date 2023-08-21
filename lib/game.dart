@@ -45,7 +45,6 @@ class Game extends StatelessWidget {
             },
           ),
           lightingColorGame: Colors.black.withOpacity(0.7),
-          showCollisionArea: true,
           progress: Container(
             color: Colors.black,
             child: Center(
