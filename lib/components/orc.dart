@@ -4,7 +4,7 @@ import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet/sprite_sheet_orc.dart';
 
 class Orc extends SimpleEnemy
-    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
+    with BlockMovementCollision, AutomaticRandomMovement, UseBarLife {
   bool canMove = true;
 
   Orc(Vector2 position)
@@ -22,30 +22,26 @@ class Orc extends SimpleEnemy
           speed: tileSize * 3,
           size: Vector2.all(tileSize * 2.9),
         ) {
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(
-            size: Vector2(
-              size.x * 0.2,
-              size.y * 0.15,
-            ),
-            align: Vector2(tileSize * 1.15, tileSize * 1.5),
-          ),
-        ],
-      ),
-    );
-
     setupBarLife(
-      margin: 0,
       size: Vector2(tileSize * 1.5, tileSize / 5),
       borderWidth: tileSize / 5,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      barLifePosition: BarLifePorition.bottom,
+      barLifeDrawPosition: BarLifeDrawPorition.bottom,
       showLifeText: false,
-      offset: Vector2(0, tileSize * -0.7),
+      position: Vector2(width / 8, -tileSize * 0.4),
     );
+  }
+
+  @override
+  Future<void> onLoad() {
+    add(
+      RectangleHitbox(
+        size: Vector2(size.x * 0.2, size.y * 0.15),
+        position: Vector2(tileSize * 1.15, tileSize * 1.5),
+      ),
+    );
+    return super.onLoad();
   }
 
   @override
@@ -54,10 +50,9 @@ class Orc extends SimpleEnemy
       this.seePlayer(
         radiusVision: tileSize * 2,
         observed: (player) {
-          this.followComponent(
-            player,
-            dt,
-            closeComponent: (comp) {
+          this.moveTowardsTarget(
+            target: player,
+            close: () {
               _execAttack();
             },
           );

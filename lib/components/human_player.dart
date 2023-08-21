@@ -5,7 +5,7 @@ import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet/sprite_sheet_player.dart';
 
 class HumanPlayer extends SimplePlayer
-    with Lighting, ObjectCollision, UseBarLife {
+    with Lighting, BlockMovementCollision, UseBarLife {
   static double maxSpeed = tileSize * 4;
 
   bool lockMove = false;
@@ -32,25 +32,29 @@ class HumanPlayer extends SimplePlayer
       ),
     );
 
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(
-            size: Vector2(
-              size.x * 0.2,
-              size.y * 0.15,
-            ),
-            align: Vector2(tileSize * 1.15, tileSize * 1.5),
-          ),
-        ],
-      ),
-    );
-
     setupBarLife(
       borderRadius: BorderRadius.circular(2),
-      offset: Vector2(0, tileSize * 0.8),
-      size: Vector2(tileSize * 2, tileSize / 3),
+      size: Vector2(tileSize * 1.5, tileSize / 5),
+      position: Vector2(width / 8, 8),
     );
+
+    setupMovementByJoystick(
+      intencityEnabled: true,
+    );
+  }
+
+  @override
+  Future<void> onLoad() {
+    add(
+      RectangleHitbox(
+        size: Vector2(
+          size.x * 0.2,
+          size.y * 0.15,
+        ),
+        position: Vector2(tileSize * 1.15, tileSize * 1.5),
+      ),
+    );
+    return super.onLoad();
   }
 
   @override
@@ -60,12 +64,7 @@ class HumanPlayer extends SimplePlayer
             event.id == LogicalKeyboardKey.select.keyId ||
             event.id == 1) &&
         event.event == ActionEvent.DOWN) {
-      _addAttackAnimation();
-      this.simpleAttackMelee(
-        damage: 10,
-        size: Vector2.all(tileSize * 1.5),
-        withPush: false,
-      );
+      _attack();
     }
     super.joystickAction(event);
   }
@@ -75,7 +74,6 @@ class HumanPlayer extends SimplePlayer
     if (lockMove || isDead) {
       return;
     }
-    speed = maxSpeed * event.intensity;
     super.joystickChangeDirectional(event);
   }
 
@@ -89,7 +87,7 @@ class HumanPlayer extends SimplePlayer
       );
 
       lockMove = true;
-      idle();
+      stopMove(forceIdle: true);
       _addDamageAnimation(() {
         lockMove = false;
       });
@@ -179,6 +177,16 @@ class HumanPlayer extends SimplePlayer
       runToTheEnd: true,
       onFinish: onFinish,
       useCompFlip: true,
+    );
+  }
+
+  void _attack() {
+    _addAttackAnimation();
+    this.simpleAttackMelee(
+      damage: 10,
+      size: Vector2.all(tileSize * 1.5),
+      withPush: false,
+      
     );
   }
 }
