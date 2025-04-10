@@ -33,10 +33,10 @@ class HumanPlayer extends SimplePlayer
     );
 
     setupLifeBar(
-      borderRadius: BorderRadius.circular(2),
-      size: Vector2(tileSize * 1.5, tileSize / 5),
-      offset: Vector2(width / 8, 8),
-    );
+        borderRadius: BorderRadius.circular(2),
+        size: Vector2(tileSize * 1.5, tileSize / 5),
+        offset: Vector2(0, 8),
+        showLifeText: false);
 
     setupMovementByJoystick(
       intensityEnabled: false,

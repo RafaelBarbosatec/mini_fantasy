@@ -29,7 +29,7 @@ class Orc extends SimpleEnemy
       borderRadius: BorderRadius.circular(2),
       barLifeDrawPosition: BarLifeDrawPosition.bottom,
       showLifeText: false,
-      offset: Vector2(width / 8, -tileSize * 0.4),
+      offset: Vector2(0, -tileSize * 0.4),
     );
   }
 
@@ -52,9 +52,7 @@ class Orc extends SimpleEnemy
         observed: (player) {
           this.moveTowardsTarget(
             target: player,
-            close: () {
-              _execAttack();
-            },
+            close: _execAttack,
           );
         },
         notObserved: () {
