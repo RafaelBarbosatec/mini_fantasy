@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 
-class Light extends GameDecoration with Lighting {
+class Light extends GameDecoration {
   Light(
     Vector2 position,
     Vector2 size,

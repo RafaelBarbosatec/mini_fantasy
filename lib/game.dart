@@ -17,24 +17,29 @@ class Game extends StatelessWidget {
       return Material(
         color: Colors.transparent,
         child: BonfireWidget(
-          joystick: Joystick(
-            keyboardConfig: KeyboardConfig(
-              acceptedKeys: [
-                LogicalKeyboardKey.space,
+          playerControllers: [
+            Joystick(
+              directional: JoystickDirectional(),
+              actions: [
+                JoystickAction(
+                  actionId: 1,
+                  margin: const EdgeInsets.all(65),
+                )
               ],
             ),
-            directional: JoystickDirectional(),
-            actions: [
-              JoystickAction(
-                actionId: 1,
-                margin: const EdgeInsets.all(65),
-              )
-            ],
-          ),
+            Keyboard(
+              config: KeyboardConfig(
+                acceptedKeys: [
+                  LogicalKeyboardKey.space,
+                  LogicalKeyboardKey.select,
+                ],
+              ),
+            )
+          ],
           player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
           cameraConfig: CameraConfig(zoom: maxSize / (tileSize * 20)),
           map: WorldMapByTiled(
-            'tile/map.json',
+            WorldMapReader.fromAsset('tile/map.json'),
             forceTileSize: Vector2.all(tileSize),
             objectsBuilder: {
               'light': (properties) => Light(
@@ -45,15 +50,6 @@ class Game extends StatelessWidget {
             },
           ),
           lightingColorGame: Colors.black.withOpacity(0.7),
-          progress: Container(
-            color: Colors.black,
-            child: Center(
-              child: Text(
-                'Loading...',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
         ),
       );
     });

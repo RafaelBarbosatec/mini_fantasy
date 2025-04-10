@@ -24,44 +24,44 @@ class SpriteSheetPlayer {
     spriteSheetPlayerDamage = await Flame.images.load('human_damage.png');
     runBottomRight = spriteSheetPlayerRun.getAnimation(
       size: Vector2.all(21),
-      count: 4,
+      amount: 4,
     );
     runBottomLeft = spriteSheetPlayerRun.getAnimation(
       size: Vector2.all(21),
-      count: 4,
-      startDy: 21,
+      amount: 4,
+      position: Vector2(0, 21),
     );
     runTopRight = spriteSheetPlayerRun.getAnimation(
       size: Vector2.all(21),
-      count: 4,
-      startDy: 42,
+      amount: 4,
+      position: Vector2(0, 42),
     );
     runTopLeft = spriteSheetPlayerRun.getAnimation(
       size: Vector2.all(21),
-      count: 4,
-      startDy: 63,
+      amount: 4,
+      position: Vector2(0, 63),
     );
 
     idleBottomRight = spriteSheetPlayerIdle.getAnimation(
       size: Vector2.all(21),
-      count: 16,
+      amount: 16,
     );
     idleBottomLeft = spriteSheetPlayerIdle.getAnimation(
       size: Vector2.all(21),
-      count: 16,
-      startDy: 21,
+      amount: 16,
+      position: Vector2(0, 21),
     );
 
     idleTopRight = spriteSheetPlayerIdle.getAnimation(
       size: Vector2.all(21),
-      count: 16,
-      startDy: 42,
+      amount: 16,
+      position: Vector2(0, 42),
     );
 
     idleTopLeft = spriteSheetPlayerIdle.getAnimation(
       size: Vector2.all(21),
-      count: 16,
-      startDy: 63,
+      amount: 16,
+      position: Vector2(0, 63),
     );
 
     return Future.value();
@@ -71,7 +71,7 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
+          amount: 4,
           loop: false,
           stepTime: animSpeed,
         )
@@ -82,8 +82,8 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 21,
+          amount: 4,
+          position: Vector2(0, 21),
           loop: false,
           stepTime: animSpeed,
         )
@@ -94,8 +94,8 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 42,
+          amount: 4,
+          position: Vector2(0, 42),
           loop: false,
           stepTime: animSpeed,
         )
@@ -106,8 +106,8 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 63,
+          amount: 4,
+          position: Vector2(0, 63),
           loop: false,
           stepTime: animSpeed,
         )
@@ -118,7 +118,7 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerDie
         .getAnimation(
           size: Vector2.all(21),
-          count: 12,
+          amount: 12,
           loop: false,
         )
         .asFuture();
@@ -128,8 +128,8 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 42,
+          amount: 4,
+          position: Vector2(0, 42),
           loop: false,
         )
         .asFuture();
@@ -139,8 +139,8 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 63,
+          amount: 4,
+          position: Vector2(0, 63),
           loop: false,
         )
         .asFuture();
@@ -150,7 +150,7 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
+          amount: 4,
           loop: false,
         )
         .asFuture();
@@ -160,8 +160,8 @@ class SpriteSheetPlayer {
     return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 21,
+          amount: 4,
+          position: Vector2(0, 21),
           loop: false,
         )
         .asFuture();

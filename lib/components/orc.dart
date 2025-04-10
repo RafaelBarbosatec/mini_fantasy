@@ -4,8 +4,8 @@ import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet/sprite_sheet_orc.dart';
 
 class Orc extends SimpleEnemy
-    with BlockMovementCollision, AutomaticRandomMovement, UseBarLife {
-  bool canMove = true;
+    with BlockMovementCollision, RandomMovement, UseLifeBar {
+  bool canMove1 = true;
 
   Orc(Vector2 position)
       : super(
@@ -22,14 +22,14 @@ class Orc extends SimpleEnemy
           speed: tileSize * 3,
           size: Vector2.all(tileSize * 2.9),
         ) {
-    setupBarLife(
+    setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
       borderWidth: tileSize / 5,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      barLifeDrawPosition: BarLifeDrawPorition.bottom,
+      barLifeDrawPosition: BarLifeDrawPosition.bottom,
       showLifeText: false,
-      position: Vector2(width / 8, -tileSize * 0.4),
+      offset: Vector2(width / 8, -tileSize * 0.4),
     );
   }
 
@@ -46,7 +46,7 @@ class Orc extends SimpleEnemy
 
   @override
   void update(double dt) {
-    if (canMove) {
+    if (canMove1) {
       this.seePlayer(
         radiusVision: tileSize * 2,
         observed: (player) {
@@ -61,7 +61,7 @@ class Orc extends SimpleEnemy
           this.runRandomMovement(
             dt,
             speed: speed / 3,
-            maxDistance: (tileSize * 2).toInt(),
+            maxDistance: (tileSize * 2),
           );
         },
       );
@@ -70,8 +70,8 @@ class Orc extends SimpleEnemy
   }
 
   @override
-  void die() {
-    canMove = false;
+  void onDie() {
+    canMove1 = false;
     animation?.playOnce(
       SpriteSheetOrc.getDie(),
       onFinish: () {
@@ -80,20 +80,20 @@ class Orc extends SimpleEnemy
       runToTheEnd: true,
       useCompFlip: true,
     );
-    super.die();
+    super.onDie();
   }
 
   @override
-  void receiveDamage(AttackFromEnum attacker, double damage, identify) {
+  void onReceiveDamage(AttackOriginEnum attacker, double damage, identify) {
     if (!isDead) {
       this.showDamage(
         damage,
-        initVelocityTop: -2,
+        initVelocityVertical: -2,
         config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
       _addDamageAnimation();
     }
-    super.receiveDamage(attacker, damage, identify);
+    super.onReceiveDamage(attacker, damage, identify);
   }
 
   void _addAttackAnimation() {
@@ -134,7 +134,7 @@ class Orc extends SimpleEnemy
   }
 
   void _addDamageAnimation() {
-    canMove = false;
+    canMove1 = false;
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
@@ -169,7 +169,7 @@ class Orc extends SimpleEnemy
       runToTheEnd: true,
       useCompFlip: true,
       onFinish: () {
-        canMove = true;
+        canMove1 = true;
       },
     );
   }

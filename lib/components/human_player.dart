@@ -5,7 +5,7 @@ import 'package:minifantasy/main.dart';
 import 'package:minifantasy/sprite_sheet/sprite_sheet_player.dart';
 
 class HumanPlayer extends SimplePlayer
-    with Lighting, BlockMovementCollision, UseBarLife {
+    with Lighting, BlockMovementCollision, UseLifeBar {
   static double maxSpeed = tileSize * 4;
 
   bool lockMove = false;
@@ -32,14 +32,14 @@ class HumanPlayer extends SimplePlayer
       ),
     );
 
-    setupBarLife(
+    setupLifeBar(
       borderRadius: BorderRadius.circular(2),
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      position: Vector2(width / 8, 8),
+      offset: Vector2(width / 8, 8),
     );
 
     setupMovementByJoystick(
-      intencityEnabled: true,
+      intensityEnabled: false,
     );
   }
 
@@ -58,31 +58,31 @@ class HumanPlayer extends SimplePlayer
   }
 
   @override
-  void joystickAction(JoystickActionEvent event) {
+  void onJoystickAction(JoystickActionEvent event) {
     if (isDead || lockMove) return;
-    if ((event.id == LogicalKeyboardKey.space.keyId ||
-            event.id == LogicalKeyboardKey.select.keyId ||
+    if ((event.id == LogicalKeyboardKey.space ||
+            event.id == LogicalKeyboardKey.select ||
             event.id == 1) &&
         event.event == ActionEvent.DOWN) {
       _attack();
     }
-    super.joystickAction(event);
+    super.onJoystickAction(event);
   }
 
   @override
-  void joystickChangeDirectional(JoystickDirectionalEvent event) {
+  void onJoystickChangeDirectional(JoystickDirectionalEvent event) {
     if (lockMove || isDead) {
       return;
     }
-    super.joystickChangeDirectional(event);
+    super.onJoystickChangeDirectional(event);
   }
 
   @override
-  void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
+  void onReceiveDamage(AttackOriginEnum attacker, double damage, identify) {
     if (!isDead) {
       this.showDamage(
         damage,
-        initVelocityTop: -2,
+        initVelocityVertical: -2,
         config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
 
@@ -92,11 +92,11 @@ class HumanPlayer extends SimplePlayer
         lockMove = false;
       });
     }
-    super.receiveDamage(attacker, damage, from);
+    super.onReceiveDamage(attacker, damage, identify);
   }
 
   @override
-  void die() {
+  void onDie() {
     animation?.playOnce(
       SpriteSheetPlayer.getDie(),
       onFinish: () {
@@ -105,7 +105,7 @@ class HumanPlayer extends SimplePlayer
       runToTheEnd: true,
       useCompFlip: true,
     );
-    super.die();
+    super.onDie();
   }
 
   void _addAttackAnimation() {
@@ -186,7 +186,6 @@ class HumanPlayer extends SimplePlayer
       damage: 10,
       size: Vector2.all(tileSize * 1.5),
       withPush: false,
-      
     );
   }
 }
